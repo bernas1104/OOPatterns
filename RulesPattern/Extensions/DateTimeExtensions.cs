@@ -7,13 +7,8 @@ namespace RulesPattern.Extensions
             DateTime? defaultValue = null
         )
         {
-            defaultValue = defaultValue.HasValue ?
-                defaultValue.Value :
-                DateTime.Now;
-
-            return dateTime.HasValue ?
-                dateTime.Value :
-                defaultValue.Value;
+            defaultValue ??= DateTime.Now;
+            return dateTime ?? defaultValue.Value;
         }
     }
 }

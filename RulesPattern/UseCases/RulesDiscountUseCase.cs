@@ -5,7 +5,7 @@ namespace RulesPattern.UseCases
 {
     public class RulesDiscountUseCase
     {
-        private readonly List<IDiscountRule> _rules = new List<IDiscountRule>();
+        private readonly List<IDiscountRule> _rules = new();
 
         public RulesDiscountUseCase()
         {
@@ -22,7 +22,7 @@ namespace RulesPattern.UseCases
         {
             decimal discount = 0;
 
-            foreach(var rule in _rules)
+            foreach (var rule in _rules)
             {
                 discount = Math.Max(
                     discount,

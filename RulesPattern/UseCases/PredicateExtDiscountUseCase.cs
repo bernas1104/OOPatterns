@@ -5,6 +5,7 @@ namespace RulesPattern.UseCases
 {
     public class PredicateExtDiscountUseCase
     {
+        #pragma warning disable
         public decimal Action(Customer customer)
         {
             decimal discount = 0;
@@ -37,8 +38,7 @@ namespace RulesPattern.UseCases
                         discount += .10m;
                     }
                 }
-            }
-            else
+            } else
             {
                 discount = Math.Max(discount, .15m);
             }

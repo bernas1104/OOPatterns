@@ -1,10 +1,10 @@
-﻿using RulesPattern.Models;
+using RulesPattern.Models;
 using RulesPattern.UseCases;
 
 namespace RulesPattern;
 public class Program
 {
-    public static void Main(string []args)
+    public static void Main()
     {
         var customer = new Customer(
             null,
