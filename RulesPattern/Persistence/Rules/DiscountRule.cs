@@ -26,7 +26,7 @@ namespace RulesPattern.Persistence.Rules
                 SuccessEvent = "0,10",
                 ErrorMessage = "Birthday discount rule not applied.",
                 RuleExpressionType = RuleExpressionType.LambdaExpression,
-                Expression = "input1.DateOfBirth.Day == day AND input1.DateOfBirth.Month == month",
+                Expression = "input1.IsBirthday(null)",
                 LocalParams = new List<ScopedParam>
                 {
                     new ScopedParam
@@ -43,33 +43,57 @@ namespace RulesPattern.Persistence.Rules
             },
             new Rule
             {
-                RuleName = "Loyal1CustomerDiscountRule",
-                SuccessEvent = "0,10 + birthdayRule.CalculateCustomerDiscount(input1)",
-                ErrorMessage = "Loyal1CustomerDiscountRule rule not applied",
+                RuleName = "LoyalOneYearDiscountNoBirthdayRule",
+                SuccessEvent = "0,10",
+                ErrorMessage = "LoyalOneYearDiscountRule rule not applied.",
                 RuleExpressionType = RuleExpressionType.LambdaExpression,
-                Expression = "input1.HasBeenLoyalForYears(1, today)"
+                Expression = "input1.HasBeenLoyalForYears(1, today) AND !input1.IsBirthday(null)",
             },
             new Rule
             {
-                RuleName = "Loyal5CustomerDiscountRule",
-                SuccessEvent = "0,12 + birthdayRule.CalculateCustomerDiscount(input1)",
-                ErrorMessage = "Loyal1CustomerDiscountRule rule not applied",
+                RuleName = "LoyalFiveYearsDiscountNoBirthdayRule",
+                SuccessEvent = "0,12",
+                ErrorMessage = "LoyalFiveYearsDiscountRule rule not applied.",
                 RuleExpressionType = RuleExpressionType.LambdaExpression,
-                Expression = "input1.HasBeenLoyalForYears(5, today)"
+                Expression = "input1.HasBeenLoyalForYears(5, today) AND !input1.IsBirthday(null)",
             },
             new Rule
             {
-                RuleName = "Loyal10CustomerDiscountRule",
-                SuccessEvent = "0,15 + birthdayRule.CalculateCustomerDiscount(input1)",
-                ErrorMessage = "Loyal1CustomerDiscountRule rule not applied",
+                RuleName = "LoyalTenYearsDiscountNoBirthdayRule",
+                SuccessEvent = "0,2",
+                ErrorMessage = "LoyalTenYearsDiscountRule rule not applied.",
                 RuleExpressionType = RuleExpressionType.LambdaExpression,
-                Expression = "input1.HasBeenLoyalForYears(10, today)"
+                Expression = "input1.HasBeenLoyalForYears(10, today) AND !input1.IsBirthday(null)",
+            },
+            new Rule
+            {
+                RuleName = "LoyalOneYearDiscountBirthdayRule",
+                SuccessEvent = "0,20",
+                ErrorMessage = "LoyalOneYearDiscountRule rule not applied.",
+                RuleExpressionType = RuleExpressionType.LambdaExpression,
+                Expression = "input1.HasBeenLoyalForYears(1, today) AND input1.IsBirthday(null)",
+            },
+            new Rule
+            {
+                RuleName = "LoyalFiveYearsDiscountBirthdayRule",
+                SuccessEvent = "0,22",
+                ErrorMessage = "LoyalFiveYearsDiscountRule rule not applied.",
+                RuleExpressionType = RuleExpressionType.LambdaExpression,
+                Expression = "input1.HasBeenLoyalForYears(5, today) AND input1.IsBirthday(null)",
+            },
+            new Rule
+            {
+                RuleName = "LoyalTenYearsDiscountBirthdayRule",
+                SuccessEvent = "0,3",
+                ErrorMessage = "LoyalTenYearsDiscountRule rule not applied.",
+                RuleExpressionType = RuleExpressionType.LambdaExpression,
+                Expression = "input1.HasBeenLoyalForYears(10, today) AND input1.IsBirthday(null)",
             },
             new Rule
             {
                 RuleName = "NewCustomerDiscountRule",
                 SuccessEvent = "0,15",
-                ErrorMessage = "New input1 discount rule not applied.",
+                ErrorMessage = "NewCustomerDiscountRule not applied.",
                 RuleExpressionType = RuleExpressionType.LambdaExpression,
                 Expression = "!input1.HasPurchasedBefore()"
             },
