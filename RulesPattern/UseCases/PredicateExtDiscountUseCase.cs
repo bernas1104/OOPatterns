@@ -1,11 +1,12 @@
 using RulesPattern.Extensions;
 using RulesPattern.Models;
 
+#pragma warning disable
+
 namespace RulesPattern.UseCases
 {
     public class PredicateExtDiscountUseCase
     {
-        #pragma warning disable
         public decimal Action(Customer customer)
         {
             decimal discount = 0;

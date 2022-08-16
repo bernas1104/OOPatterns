@@ -105,7 +105,7 @@ de uso e aplicar as regras iterando sobre esta lista:
 ```csharp
 private readonly List<IRule> _rules = new();
 
-public Execute()
+public Evaluator()
 {
     _rules.Add(new FirstRule());
     _rules.Add(new SecondRule());
@@ -120,6 +120,7 @@ public TResult Action(State state)
     foreach (var rule in _rules)
     {
         // Apply the rule
+        rule.Execute(state);
     }
 
     return result;
@@ -150,7 +151,7 @@ and apply each rule by iterating over this list.
 ```csharp
 private readonly List<IRule> _rules = new();
 
-public Execute()
+public Evaluator()
 {
     _rules.Add(new FirstRule());
     _rules.Add(new SecondRule());
@@ -165,6 +166,7 @@ public TResult Action(State state)
     foreach (var rule in _rules)
     {
         // Apply the rule
+        rule.Execute(state);
     }
 
     return result;

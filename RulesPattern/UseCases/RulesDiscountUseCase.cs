@@ -13,7 +13,7 @@ namespace RulesPattern.UseCases
             _rules.Add(new SeniorDiscountRule());
             _rules.Add(new LoyalCustomerDiscountRule(1, 0.10m));
             _rules.Add(new LoyalCustomerDiscountRule(5, 0.12m));
-            _rules.Add(new LoyalCustomerDiscountRule(10, 0.15m));
+            _rules.Add(new LoyalCustomerDiscountRule(10, 0.2m));
             _rules.Add(new NewCustomerDiscountRule());
             // _rules.Add(new VeteranDiscountRule());
         }

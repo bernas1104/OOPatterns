@@ -4,7 +4,7 @@ namespace RulesPattern.UseCases
 {
     public class NaiveDiscountUseCase
     {
-        #pragma warning disable
+#pragma warning disable
         public decimal Action(Customer customer)
         {
             decimal discount = 0;
@@ -41,7 +41,7 @@ namespace RulesPattern.UseCases
                         customer.DateOfBirth.Month == DateTime.Today.Month
                     )
                     {
-                        discount = Math.Max(discount, .10m);
+                        discount += 0.10m;
                     }
                 }
             } else

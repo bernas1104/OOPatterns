@@ -1,3 +1,5 @@
+using RulesPattern.Extensions;
+
 namespace RulesPattern.Models
 {
     public class Customer
@@ -16,6 +18,38 @@ namespace RulesPattern.Models
             DateOfBirth = dateOfBirth;
             DateFirstPurchase = dateFirstPurchase;
             IsVeteran = isVeteran;
+        }
+
+        public bool IsSenior(DateTime? date = null)
+        {
+            return DateOfBirth < date.ToValueOrDefault().AddYears(-65);
+        }
+
+        public bool IsBirthday(DateTime? date = null)
+        {
+            date = date.ToValueOrDefault();
+            return DateOfBirth.Day == date.Value.Day &&
+                DateOfBirth.Month == date.Value.Month;
+        }
+
+        public bool HasBeenLoyalForYears(
+            int numberOfYears,
+            DateTime? date = null
+        )
+        {
+            if (!HasPurchasedBefore())
+            {
+                return false;
+            }
+
+            numberOfYears = -1 * numberOfYears;
+            return DateFirstPurchase!.Value <
+                date.ToValueOrDefault().AddYears(numberOfYears);
+        }
+
+        public bool HasPurchasedBefore()
+        {
+            return DateFirstPurchase.HasValue;
         }
     }
 }
